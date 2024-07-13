@@ -11,7 +11,10 @@ def caesar_cipher(string, shift_factor)
   result = ""
   string.each_char do |char|
     if char.match?(/[a-zA-Z]/)
-      position = char.downcase.ord + 1 + shift_factor
+      position = char.downcase.ord + shift_factor
+      if position >= 123
+        position = 97 + (position - 123)
+      end
       if char.is_upper? == true
         result += position.chr.upcase
       else
