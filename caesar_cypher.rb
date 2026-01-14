@@ -1,25 +1,22 @@
-
 require 'pry-byebug'
 
 class String
   def is_upper?
-    self == self.upcase
+    self == upcase
   end
 end
 
 def caesar_cipher(string, shift_factor)
-  result = ""
+  result = ''
   string.each_char do |char|
     if char.match?(/[a-zA-Z]/)
       position = char.downcase.ord + shift_factor
-      if position >= 123
-        position = 97 + (position - 123)
-      end
-      if char.is_upper? == true
-        result += position.chr.upcase
-      else
-        result += position.chr
-      end
+      position = 97 + (position - 123) if position >= 123
+      result += if char.is_upper? == true
+                  position.chr.upcase
+                else
+                  position.chr
+                end
     else
       result += char
     end
@@ -27,5 +24,4 @@ def caesar_cipher(string, shift_factor)
   puts result
 end
 
-
-caesar_cipher("Ciao sono Jacopo!", 3)
+caesar_cipher('Ciao sono Jacopo!', 3)
